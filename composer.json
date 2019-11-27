@@ -1,7 +1,7 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "API de Documentos Fiscais D5 Tecnologia",
+    "description": "API de testes com Documentos Fiscais",
     "keywords": [
         "framework",
         "laravel"
