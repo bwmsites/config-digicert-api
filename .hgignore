@@ -1,0 +1,14 @@
+public/hot
+public/storage
+storage/logs/*.log
+storage/*.key
+vendor
+.env
+config/nfe/certificado/*.crt
+config/nfe/certificado/*.p12
+config/nfe/certificado/*.pfx
+config/nfe/logo/*.*
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+yarn-error.log
