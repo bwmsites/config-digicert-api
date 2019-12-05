@@ -4,10 +4,9 @@
  * Manipulacao das configuracoes da NFe
  *
  * @category NFe
- * @package  D5DFe
- * @author   Bruno C. Silva <bruno@d5tecnologia.com.br>
- * @license  Privada Nao pode ser distribuida
- * @link     bruno at <d5tecnologia.com.br>
+ * @package  DFe
+ * @author   "Bruno C. Silva" <bwmsites@gmail.com>
+ * @link     fb.com/bwmsites
  */
 
 namespace App\Http\Controllers\NFe;
@@ -97,7 +96,7 @@ class NFeConfigController extends Controller
     /**
      * Exibe a configuracao existente
      *
-     * @param  $config => ID vindo da tabela nfe_config
+     * @param  $config => ID vindo da tabela de configurações de certificado digital
      * @param \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -111,7 +110,6 @@ class NFeConfigController extends Controller
         $certPass = $request->input('certificado_senha');
         
         if ($conf) {
-            //return $conf->certificado_validade;
             $emissor = Pessoa::find($conf->empresa);
             $api_config = $this->_setConfigAPI($tpAmb, $emissor);
             $cnpj = Utils::desformataCNPJ($emissor->cpf_cnpj);
@@ -119,38 +117,6 @@ class NFeConfigController extends Controller
             $certInfo = CertS::storeCertFile($cnpj, $request);
             $logo = Utils::storeLogoFile($request);
             return $certInfo;
-/*
-            if ($certInfo['retorno'] !== 'ok') {
-                return $certInfo;
-            }
-
-            $certName = isset($certInfo['certificado']) ? $certInfo['certificado'] : $conf->certificado;
-            $certVal  = isset($certInfo['validade'])    ? $certInfo['validade']    : $conf->certificado_validade;
-
-            try {
-                $conf->fill(
-                    [
-                    "id" => $nID,
-                    "empresa" => $empresa,
-                    "tipo_ambiente" => $tpAmb,
-                    "tipo_certificado" => $tpCert,
-                    "certificado" => $certName,
-                    "certificado_senha" => $certPass,
-                    "certificado_validade" => $certVal,
-                    "danfe_tipo_impressao" => $tpImp,
-                    "cpf_cnpj" => $cnpj,
-                    "api_config" => $api_config,
-                    "logo" => $logo
-                    ]
-                );
-                $conf->save();
-                $content = ["retorno" => "ok", "msg" => "Configuração atualizada com sucesso!"];
-                $ret = 200;
-            } catch (\Exception $e) {
-                //throw $th;
-                $content = ["retorno" => "erro", "msg" => "Erro ao atualizar configurações. Detalhe: " . $e->getMessage()];
-                $ret = 500;
-            }*/
         } else {
             $content = ["retorno" => "falha", "msg" => "Dados não localizados"];
             $ret = 204;
