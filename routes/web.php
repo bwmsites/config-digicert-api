@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return 'API de Integração com Documentos Fiscais D5 Tecnologia';
+    return 'API de Integração com Documentos Fiscais';
 });
 
 Route::get('nfe/imprimir/{idnfe}', 'NFe\NFeController@imprime');
